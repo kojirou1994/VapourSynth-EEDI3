@@ -2,9 +2,7 @@
 
 #include "shared.hpp"
 
-#ifdef VS_TARGET_CPU_X86
 #define MAX_VECTOR_SIZE 512
-#include "vectorclass/vectorclass.h"
 
 template<typename T1, typename T2>
 static inline void prepareLines(const T1 * srcp, T2 * _dstp, const int width, const int height, const int srcStride, const int dstStride, const int srcY, const int vectorSize) noexcept {
@@ -54,7 +52,6 @@ static inline void prepareMask(const uint8_t * srcp, uint8_t * VS_RESTRICT dstp,
         dstp++;
     }
 }
-#endif
 
 static void copyMask(const VSFrameRef * src, VSFrameRef * dst, const int plane, const int field_n, const bool dh, const VSAPI * vsapi) noexcept {
     const int off = dh ? 0 : field_n;
